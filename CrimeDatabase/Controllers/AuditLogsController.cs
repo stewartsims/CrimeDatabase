@@ -20,13 +20,13 @@ namespace CrimeDatabase.Controllers
         }
 
         // display all audit log entries
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             return View(_auditLogRepository.GetAll());
         }
 
         // retrieve individual log details
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {

@@ -26,7 +26,7 @@ namespace CrimeDatabaseTests
         public void Index_ActionExecutes_ReturnsViewForIndex()
         {
             var result = _controller.Index(null);
-            Assert.IsType<ViewResult>(result.Result);
+            Assert.IsType<ViewResult>(result);
         }
 
         [Fact]
@@ -38,7 +38,7 @@ namespace CrimeDatabaseTests
                             LocationArea = "Test Area", LocationTown = "Test Town", VictimName = "A. Smith" }, new CrimeEvent() { Id = 1, CrimeType = CrimeDatabase.CrimeTypeEnum.CriminalDamage, LocationArea = "Test Area", LocationTown = "Test Town", VictimName = "J. Bloggs" } 
                     });
             var result = _controller.Index(null);
-            var viewResult = result.Result as ViewResult;
+            var viewResult = result as ViewResult;
             var crimeEvents = Assert.IsType<List<CrimeEvent>>(viewResult.Model);
             Assert.Equal(2, crimeEvents.Count);
         }
@@ -51,7 +51,7 @@ namespace CrimeDatabaseTests
                         new CrimeEvent() { Id = 1, CrimeType = CrimeDatabase.CrimeTypeEnum.CriminalDamage, LocationArea = "Test Area", LocationTown = "Test Town", VictimName = "A. Smith" }, 
                     });
             var result = _controller.Index("Bloggs");
-            var viewResult = result.Result as ViewResult;
+            var viewResult = result as ViewResult;
             var crimeEvents = Assert.IsType<List<CrimeEvent>>(viewResult.Model);
             Assert.Single(crimeEvents);
         }

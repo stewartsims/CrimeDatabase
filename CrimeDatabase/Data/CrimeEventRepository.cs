@@ -57,7 +57,7 @@ namespace CrimeDatabase.Data
             // before we delete the crime event we must remove the explicit id reference from all previous audit log entries
             _context.AuditLog
                 .Where(existingAuditLog => existingAuditLog.CrimeEventID == crimeEvent.Id)
-                .ForEachAsync(existingAuditLog => existingAuditLog.CrimeEventID = null);
+                .ForEachAsync(existingAuditLog => existingAuditLog.CrimeEventID = null).Wait();
             _context.CrimeEvent.Remove(crimeEvent);
             _context.SaveChanges();
             return crimeEvent;

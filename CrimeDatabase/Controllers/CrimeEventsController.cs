@@ -22,7 +22,7 @@ namespace CrimeDatabase.Controllers
 
         // List all events
         // if search parameter provided, filter by: Area, Town & Victim Name
-        public async Task<IActionResult> Index(string searchString)
+        public IActionResult Index(string searchString)
         {
             TempData["SearchString"] = searchString;
             var crimesToReturn = _crimeEventRepository.Search(searchString);
@@ -31,7 +31,7 @@ namespace CrimeDatabase.Controllers
 
 
         // Get an individual crime event to display details
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -58,7 +58,7 @@ namespace CrimeDatabase.Controllers
         // also record audit log of event creation
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CrimeDate,LocationArea,LocationTown,VictimName,CrimeType,Notes")] CrimeEvent crimeEvent)
+        public IActionResult Create([Bind("Id,CrimeDate,LocationArea,LocationTown,VictimName,CrimeType,Notes")] CrimeEvent crimeEvent)
         {
             if (ModelState.IsValid)
             {
@@ -69,7 +69,7 @@ namespace CrimeDatabase.Controllers
         }
 
         // Prepare to edit crime event
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -88,7 +88,7 @@ namespace CrimeDatabase.Controllers
         // also record an audit log of the action
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CrimeDate,LocationArea,LocationTown,VictimName,CrimeType,Notes")] CrimeEvent crimeEvent)
+        public IActionResult Edit(int id, [Bind("Id,CrimeDate,LocationArea,LocationTown,VictimName,CrimeType,Notes")] CrimeEvent crimeEvent)
         {
             if (id != crimeEvent.Id)
             {
@@ -118,7 +118,7 @@ namespace CrimeDatabase.Controllers
         }
 
         // Prepare to delete crime event
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -138,14 +138,9 @@ namespace CrimeDatabase.Controllers
         // also record an audit log of the event deletion
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var crimeEvent = _crimeEventRepository.GetById(id);
-            if (crimeEvent != null)
-            {
-                _crimeEventRepository.DeleteById(crimeEvent.Id);
-            }
-
+            _crimeEventRepository.DeleteById(id);
             return RedirectToAction(nameof(Index));
         }
     }
