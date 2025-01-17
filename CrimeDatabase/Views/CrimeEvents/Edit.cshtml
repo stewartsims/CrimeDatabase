@@ -1,0 +1,63 @@
+﻿@model CrimeDatabase.Models.CrimeEvent
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Crime Event</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="CrimeDate" class="control-label"></label>
+                <input asp-for="CrimeDate" class="form-control" />
+                <span asp-validation-for="CrimeDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocationArea" class="control-label"></label>
+                <input asp-for="LocationArea" class="form-control" />
+                <span asp-validation-for="LocationArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocationTown" class="control-label"></label>
+                <input asp-for="LocationTown" class="form-control" />
+                <span asp-validation-for="LocationTown" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VictimName" class="control-label"></label>
+                <input asp-for="VictimName" class="form-control" />
+                <span asp-validation-for="VictimName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CrimeType" class="control-label"></label>
+                <select asp-for="CrimeType"
+                        class="form-control"
+                        asp-items="Html.GetEnumSelectList<CrimeTypeEnum>()">
+                    <option>Select type ...</option>
+                </select>
+                <span asp-validation-for="CrimeType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Notes" class="control-label"></label>
+                <input asp-for="Notes" class="form-control" />
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

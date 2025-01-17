@@ -1,0 +1,42 @@
+﻿@model IEnumerable<CrimeDatabase.Models.AuditLog>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ActionDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActionType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CrimeEventID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActionDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActionType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CrimeEventID)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
