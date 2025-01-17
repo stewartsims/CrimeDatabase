@@ -3,6 +3,8 @@ CrimeDatabase
 
 An ASP.NET Core MVC project using SQL Express Local DB for demonstrating software development capabilities.
 
+Open the solution using Visual Studio - the .sln file can be found under /CrimeDatabase
+
 The main project 'CrimeDatabase' includes two entity types: `CrimeEvent` for recording crime details and `AuditLog` which is written to every time a crime is added, updated or deleted. The crime type options used to make the field a drop-down in the user interface are provided in `CrimeTypeEnum`.
 
 A separate project 'CrimeDatabaseTests' includes some basic unit tests for the main controller using the xUnit and 'Moq' testing frameworks.
