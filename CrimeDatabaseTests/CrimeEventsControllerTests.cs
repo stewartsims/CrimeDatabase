@@ -9,7 +9,7 @@ using Moq;
 namespace CrimeDatabaseTests
 {
     // some basic unit tests -
-    // would suggest as more logic is added controllers are more thoroughly tested
+    // would suggest as more logic is added that the controllers are more thoroughly tested
     // and integration tests introduced for testing end-to-end repository behaviour
     public class CrimeEventsControllerTests
     {
@@ -43,6 +43,9 @@ namespace CrimeDatabaseTests
             Assert.Equal(2, crimeEvents.Count);
         }
 
+        // this test does not fully test search logic
+        // as an improvment I would recommend moving the search logic from repository into the controller so it can be unit tested here
+        // or add integration tests that verify the search logic
         [Fact]
         public void Index_ActionExecutes_ReturnsSingleResult_WithSearchString()
         {
